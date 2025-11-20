@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Discovery</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Anime Discovery</h1>
+      <p class="subtitle">Explore the world of anime and manga with data from Anime News Network</p>
+    </header>
+
+    <main>
+      <div class="search-container">
+        <form action="/search" method="POST" style="display: flex; width: 100%;">
+          <input type="text" name="query" placeholder="Search for an anime (e.g., Naruto)..." required>
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <% if (error) { %>
+        <div style="text-align: center; color: #ef4444; margin-bottom: 2rem;">
+          <%= error %>
+        </div>
+      <% } %>
+
+      <!-- Results will be injected here later -->
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Anime Discovery</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header style="padding: 2rem 0;">
+            <h1><a href="/"
+                    style="text-decoration: none; color: inherit; background: none; -webkit-text-fill-color: initial;">Anime
+                    Discovery</a></h1>
+        </header>
+
+        <main>
+            <div class="search-container" style="margin-bottom: 2rem;">
+                <form action="/search" method="POST" style="display: flex; width: 100%;">
+                    <input type="text" name="query" value="<%= searchQuery %>" placeholder="Search for an anime..."
+                        required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <% if (error) { %>
+                <div style="text-align: center; color: #ef4444; margin-bottom: 2rem;">
+                    <%= error %>
+                </div>
+                <% } %>
+
+                    <% if (results && results.length> 0) { %>
+                        <h2 style="margin-bottom: 1.5rem; color: var(--text-gray);">Found <%= results.length %> results
+                                for "<%= searchQuery %>"</h2>
+                        <div class="results-grid">
+                            <% results.forEach(item=> { %>
+                                <div class="card">
+                                    <!-- ANN API doesn't always provide images in the search list, we might need to handle that -->
+                                    <!-- If type is anime, link to details -->
+                                    <div class="card-content">
+                                        <span class="card-type">
+                                            <%= item.type %>
+                                        </span>
+                                        <h3 class="card-title">
+                                            <%= item.name %>
+                                        </h3>
+                                        <p style="color: var(--text-gray); font-size: 0.9rem;">ID: <%= item.id %>
+                                        </p>
+                                        <a href="/anime/<%= item.id %>"
+                                            style="display: inline-block; margin-top: 1rem; color: var(--secondary); text-decoration: none; font-weight: 600;">View
+                                            Details &rarr;</a>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } else if (searchQuery) { %>
+                            <div style="text-align: center; color: var(--text-gray); margin-top: 3rem;">
+                                <p>No results found for "<%= searchQuery %>". Try a different term.</p>
+                            </div>
+                            <% } %>
+        </main>
+    </div>
+</body>
+
+</html>
