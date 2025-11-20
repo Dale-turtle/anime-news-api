@@ -26,11 +26,7 @@ A web application that allows users to search for anime and manga using the Anim
 ### Installation
 
 1.  Clone the repository (or download the source code).
-2.  Navigate to the project directory:
-    ```bash
-    cd project-4-public-api-app
-    ```
-3.  Install dependencies:
+2.  Install dependencies:
     ```bash
     npm install
     ```
